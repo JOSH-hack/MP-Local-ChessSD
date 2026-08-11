@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#303030">
+
+    <TextView
+        android:id="@+id/texteStatut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Trait aux Blancs"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:gravity="center" />
+
+    <com.echecsapp.vue.EchiquierView
+        android:id="@+id/vueEchiquier"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>
