@@ -15,10 +15,34 @@
         android:textSize="18sp"
         android:gravity="center" />
 
-    <com.echecsapp.vue.EchiquierView
+    <com.echecs.vue.EchiquierView
         android:id="@+id/vueEchiquier"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <Button
+            android:id="@+id/boutonAbandonner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:text="Abandonner" />
+
+        <Button
+            android:id="@+id/boutonProposerNulle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="4dp"
+            android:text="Proposer nulle" />
+
+    </LinearLayout>
 
 </LinearLayout>

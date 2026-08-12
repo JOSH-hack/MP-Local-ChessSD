@@ -24,6 +24,18 @@ public class EchiquierView extends View {
     private GestionnairePartie gestionnaire;
     private OnCoupSelectionneListener listener;
 
+    /**
+     * Couleur jouable sur CET appareil. null = mode local (pass-and-play,
+     * les deux couleurs sont jouables sur le même écran). En mode réseau,
+     * fixée à BLANC ou NOIR selon le rôle (hôte/invité) : on ne peut alors
+     * sélectionner que ses propres pièces, même quand c'est son tour.
+     */
+    private CouleurPiece couleurLocale;
+
+    public void setCouleurLocale(CouleurPiece couleurLocale) {
+        this.couleurLocale = couleurLocale;
+    }
+
     private final Paint paintCaseClaire = new Paint();
     private final Paint paintCaseFoncee = new Paint();
     private final Paint paintSelection = new Paint();
@@ -185,6 +197,10 @@ public class EchiquierView extends View {
 
         if (piece == null || piece.getCouleur() != gestionnaire.getPartie().getJoueurActuel()) {
             return; // rien à sélectionner ici (case vide ou pièce adverse)
+        }
+
+        if (couleurLocale != null && piece.getCouleur() != couleurLocale) {
+            return; // mode réseau : on ne peut pas déplacer les pièces de l'adversaire
         }
 
         caseSelectionnee = position;

@@ -63,6 +63,27 @@ public class GestionnairePartie {
     }
 
     /**
+     * Retrouve, parmi les coups actuellement légaux, celui qui correspond
+     * exactement à un départ/arrivée donnés (et un type de promotion si
+     * applicable). Utilisé pour valider un coup REÇU DU RÉSEAU avant de le
+     * jouer : on ne fait jamais confiance aveuglément à l'appareil distant,
+     * on revérifie localement que le coup est bien légal.
+     * Retourne null si aucun coup légal ne correspond (message corrompu,
+     * désynchronisation, ou tentative de coup invalide).
+     */
+    public Coup trouverCoupLegal(Position depart, Position arrivee, Character typePromotion) {
+        for (Coup coup : genererTousLesCoupsLegaux()) {
+            if (coup.getDepart().equals(depart) && coup.getArrivee().equals(arrivee)) {
+                if (coup.isEstPromotion() && typePromotion != null) {
+                    coup.setTypePiecePromotion(typePromotion);
+                }
+                return coup;
+            }
+        }
+        return null;
+    }
+
+    /**
      * Joue un coup : applique tous les effets de bord (roque, prise en
      * passant, promotion, mise à jour des droits de roque et de la cible
      * en passant), enregistre l'historique, et passe la main.
